@@ -1,0 +1,60 @@
+ORGANIZACAO DE VAGOES COM DEQUE
+
+Abra a pasta OrganizacaoVagoes no NetBeans e execute o projeto.
+Use JDK 17 ou superior. As bibliotecas da JSGE estao na pasta lib.
+
+REGRAS
+Chega um vagao de cada vez, em uma ordem sorteada a cada partida.
+O objetivo e montar o trem na ordem mostrada na tela.
+Essa ordem tambem e sorteada a cada reinicio e muda em relacao a anterior.
+A seta ESQUERDA coloca o proximo vagao na frente.
+A seta DIREITA coloca o proximo vagao no fim.
+Depois de colocar os seis vagoes, o jogo verifica a ordem.
+R reinicia a partida.
+BACKSPACE desfaz a ultima jogada, inclusive depois do resultado.
+Pode ser usado varias vezes para voltar mais jogadas.
+
+Cada reinicio gera uma ordem diferente da anterior.
+Todas as ordens de chegada permitem montar o objetivo sorteado.
+Nao ha tempo limite, pontuacao ou animacao de movimento.
+
+EXPLICACAO DO CODIGO
+Deque<Integer> trem guarda os numeros dos vagoes.
+ArrayDeque e a implementacao usada para esse deque.
+addFirst coloca um vagao na frente.
+addLast coloca um vagao no fim.
+clear esvazia o deque ao reiniciar.
+removeFirst e removeLast retiram o ultimo vagao colocado, conforme a ponta usada.
+colocadoNaFrente guarda a ponta escolhida em cada jogada.
+O for percorre o deque da frente para o fim para desenhar e conferir a ordem.
+
+chegada guarda a sequencia dos vagoes que chegam.
+objetivo guarda a ordem que o jogador precisa montar.
+proximo indica qual vagao sera colocado.
+terminou impede novas jogadas depois do resultado.
+mensagem guarda o texto mostrado ao jogador.
+
+create prepara o deque e o gerador aleatorio.
+sortearChegada gera uma sequencia solucionavel diferente da anterior.
+Para isso, retira numeros das pontas do objetivo e guarda na ordem inversa.
+O jogador consegue reconstruir essa ordem inserindo nas pontas.
+reiniciar limpa o trem e volta ao primeiro vagao.
+update le as teclas e insere o vagao na ponta escolhida.
+sortearObjetivo embaralha os numeros de 1 a 6 usando trocas aleatorias.
+verificarOrdem compara os vagoes com a sequencia objetivo.
+draw desenha a tela.
+desenharVagao desenha um vagao numerado.
+
+POR QUE UM DEQUE?
+O jogador precisa inserir vagoes nas duas extremidades do trem.
+Uma fila comum insere apenas no fim; uma pilha insere apenas no topo.
+O deque permite inserir na frente ou no fim, exatamente como a mecanica pede.
+Os vagoes desenhados no trem sao os elementos armazenados no deque.
+
+EXEMPLO (OBJETIVO 1, 2, 3, 4, 5, 6 E CHEGADA 3, 4, 2, 5, 1, 6)
+3: esquerda (ou direita, pois o trem esta vazio).
+4: direita.
+2: esquerda.
+5: direita.
+1: esquerda.
+6: direita.
